@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'index' %}">DJANGO</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
+          <li class="nav-item active"><a class="nav-link" href="{% url 'seventh_app:register' %}">Register</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+          <li class="nav-item active"><a class="nav-link" href="{% url 'seventh_app:user_login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      {% block body_block %}
+      <!-- Everything outside of this scope gets inherited if you extend -->
+      {% endblock %}
+    </div>
+
+  </body>
+</html>
